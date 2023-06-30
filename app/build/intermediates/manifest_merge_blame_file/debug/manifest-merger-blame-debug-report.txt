@@ -1,0 +1,75 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.doodt.tiktok"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="19"
+8-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络权限 -->
+11-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:5:5-67
+11-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+12-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:6:5-81
+12-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:6:22-78
+13    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+13-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:7:5-80
+13-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:7:22-77
+14    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+14-->[cn.jzvd:jiaozivideoplayer:7.7.0] D:\Android\.gradle\caches\transforms-2\files-2.1\585c3e10af13bbddb54fbedf61d232d0\jiaozivideoplayer-7.7.0\AndroidManifest.xml:9:5-79
+14-->[cn.jzvd:jiaozivideoplayer:7.7.0] D:\Android\.gradle\caches\transforms-2\files-2.1\585c3e10af13bbddb54fbedf61d232d0\jiaozivideoplayer-7.7.0\AndroidManifest.xml:9:22-76
+15
+16    <application
+16-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:9:5-30:19
+17        android:allowBackup="true"
+17-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:10:9-35
+18        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+18-->[androidx.core:core:1.5.0] D:\Android\.gradle\caches\transforms-2\files-2.1\4db6467d6ee37873e6edf677cbaebb78\core-1.5.0\AndroidManifest.xml:24:18-86
+19        android:debuggable="true"
+20        android:icon="@drawable/icon_tiktok"
+20-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:11:9-45
+21        android:label="@string/app_name"
+21-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:12:9-41
+22        android:networkSecurityConfig="@xml/network_security_config"
+22-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:13:9-69
+23        android:roundIcon="@drawable/icon_tiktok"
+23-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:14:9-50
+24        android:supportsRtl="true"
+24-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:15:9-35
+25        android:testOnly="true"
+26        android:theme="@style/AppTheme" >
+26-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:16:9-40
+27
+28        <!-- 启动页 -->
+29        <activity android:name="com.doodt.tiktok.activity.SplashActivity" >
+29-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:18:9-24:20
+29-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:18:19-58
+30            <intent-filter>
+30-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:19:13-23:29
+31                <action android:name="android.intent.action.MAIN" />
+31-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:20:17-69
+31-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:20:25-66
+32
+33                <category android:name="android.intent.category.LAUNCHER" />
+33-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:22:17-77
+33-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:22:27-74
+34            </intent-filter>
+35        </activity>
+36        <activity
+36-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:25:9-28:52
+37            android:name="com.doodt.tiktok.activity.MainActivity"
+37-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:26:13-50
+38            android:configChanges="orientation|screenSize|keyboardHidden"
+38-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:27:13-74
+39            android:screenOrientation="portrait" />
+39-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:28:13-49
+40        <activity android:name="com.doodt.tiktok.activity.SettingActivity" />
+40-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:29:9-61
+40-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:29:19-59
+41    </application>
+42
+43</manifest>

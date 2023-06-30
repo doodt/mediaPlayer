@@ -1,0 +1,68 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.doodt.tiktok"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="19"
+8-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络权限 -->
+11-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:5:5-67
+11-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+12-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:6:5-81
+12-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:6:22-78
+13    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+13-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:7:5-80
+13-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:7:22-77
+14    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+14-->[cn.jzvd:jiaozivideoplayer:7.0.5] D:\Android\.gradle\caches\transforms-2\files-2.1\65217ec2e35817c82c83c8b922153123\jetified-jiaozivideoplayer-7.0.5\AndroidManifest.xml:11:5-79
+14-->[cn.jzvd:jiaozivideoplayer:7.0.5] D:\Android\.gradle\caches\transforms-2\files-2.1\65217ec2e35817c82c83c8b922153123\jetified-jiaozivideoplayer-7.0.5\AndroidManifest.xml:11:22-76
+15
+16    <application
+16-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:9:5-27:19
+17        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+17-->[androidx.core:core:1.1.0] D:\Android\.gradle\caches\transforms-2\files-2.1\f710bd09a87904533072931018d01820\core-1.1.0\AndroidManifest.xml:24:18-86
+18        android:hardwareAccelerated="true"
+18-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:10:9-43
+19        android:icon="@drawable/icon_tiktok"
+19-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:11:9-45
+20        android:label="@string/app_name"
+20-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:12:9-41
+21        android:networkSecurityConfig="@xml/network_security_config"
+21-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:13:9-69
+22        android:roundIcon="@drawable/icon_tiktok"
+22-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:14:9-50
+23        android:supportsRtl="true"
+23-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:15:9-35
+24        android:theme="@style/AppTheme" >
+24-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:16:9-40
+25
+26        <!-- 启动页 -->
+27        <activity android:name="com.doodt.tiktok.activity.SplashActivity" >
+27-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:18:9-24:20
+27-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:18:19-58
+28            <intent-filter>
+28-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:19:13-23:29
+29                <action android:name="android.intent.action.MAIN" />
+29-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:20:17-69
+29-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:20:25-66
+30
+31                <category android:name="android.intent.category.LAUNCHER" />
+31-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:22:17-77
+31-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:22:27-74
+32            </intent-filter>
+33        </activity>
+34        <activity android:name="com.doodt.tiktok.activity.MainActivity" /> <!-- 设置页 -->
+34-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:25:9-59
+34-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:25:19-56
+35        <activity android:name="com.doodt.tiktok.activity.SettingActivity" />
+35-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:26:9-71
+35-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:26:19-59
+36    </application>
+37
+38</manifest>

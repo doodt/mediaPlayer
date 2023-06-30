@@ -1,0 +1,4 @@
+#Fri Jun 30 09:29:12 CST 2023
+base.0=E\:\\android\\TiktokDemo-master\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
