@@ -5,128 +5,140 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.PagerSnapHelper;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.doodt.tiktok.R;
-import com.doodt.tiktok.adapter.TiktokAdapter;
+import com.doodt.tiktok.adapter.ViewPagerAdapter;
 import com.doodt.tiktok.entity.MediaModule;
-import com.doodt.tiktok.entity.Setting;
-import com.doodt.tiktok.util.EchoUtil;
-import com.doodt.tiktok.view.CusVideoView;
+import com.doodt.tiktok.holder.RecyclerItemNormalHolder;
+import com.doodt.tiktok.util.Constants;
+import com.doodt.tiktok.util.HttpHelper;
+import com.doodt.tiktok.view.WarnDialog;
+import com.shuyu.gsyvideoplayer.GSYVideoManager;
 
 import org.litepal.LitePal;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import cn.jzvd.Jzvd;
-import cn.jzvd.JzvdStd;
-
-/**
- * 作者：created by Jarchie
- * 时间：2020/12/7 10:23:40
- * 邮箱：jarchie520@gmail.com
- * 说明：仿抖音主界面效果实现
- */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private RecyclerView mRecycler;
-    private LinearLayoutManager linearLayoutManager;
-    private TiktokAdapter mAdapter;
-    private int startIndex;
-    private List<MediaModule> mediaModuleList;
-    private PagerSnapHelper snapHelper;
-    private int currentPosition;
+    private ViewPagerAdapter viewPagerAdapter;
+    private ViewPager2 viewPager2;
+    private List<MediaModule> mediaModuleList = new ArrayList<>();
+    private ImageView imageView;
+
+    private int startIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-        initListener();
+        initData();
     }
 
     //初始化View
     private void initView() {
-        mRecycler = findViewById(R.id.mRecycler);
-        linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        mRecycler.setLayoutManager(linearLayoutManager);
-
-        snapHelper = new PagerSnapHelper();
-        snapHelper.attachToRecyclerView(mRecycler);
-        mediaModuleList = new ArrayList<>();
-        mAdapter = new TiktokAdapter(this, mediaModuleList);
-        mRecycler.setAdapter(mAdapter);
-        initData();
+        imageView = findViewById(R.id.config_btn);
+        imageView.setOnClickListener(this::popup);
+        viewPager2 = findViewById(R.id.view_pager2);
+        viewPagerAdapter = new ViewPagerAdapter(this, mediaModuleList);
+        viewPager2.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
+        viewPager2.setAdapter(viewPagerAdapter);
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                //大于0说明有播放
+                int playPosition = GSYVideoManager.instance().getPlayPosition();
+                if (playPosition >= 0) {
+                    GSYVideoManager.releaseAllVideos();
+                    //对应的播放列表TAG
+                    playPosition(position);
+                }
+                Log.i(TAG, "onPageSelected: " + position + "," + viewPager2.getAdapter().getItemCount());
+                //当前播放的视频位于倒数第二个时,请求新的数据
+                if (viewPager2.getAdapter() != null && position >= viewPager2.getAdapter().getItemCount() - 2) {
+                    getSource();
+                }
+            }
+        });
+        // 提前加载一页
+        viewPager2.setOffscreenPageLimit(1);
     }
 
-
-    //初始化监听
-    private void initListener() {
-        mRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                switch (newState) {
-                    case RecyclerView.SCROLL_STATE_IDLE://停止滚动
-                        View view = snapHelper.findSnapView(linearLayoutManager);
-                        //当前固定后的item,position
-                        assert view != null;
-                        int position = recyclerView.getChildAdapterPosition(view);
-                        if (currentPosition != position) {
-                            //如果当前position 和上一次固定后的position相同,说明是同一个item,只不过是滑动了一点点,没有切换到下一个item
-                            JzvdStd.releaseAllVideos();//释放所有资源
-                            RecyclerView.ViewHolder viewHolder = recyclerView.getChildViewHolder(view);
-                            if (viewHolder != null && viewHolder instanceof TiktokAdapter.ViewHolder) {
-                                ((TiktokAdapter.ViewHolder) viewHolder).mVideoView.startVideo();
-                            }
-                        }
-                        currentPosition = position;
-                        Log.i(TAG, "onScrollStateChanged: " + currentPosition);
-                        if (currentPosition == mediaModuleList.size() - 1) {
-                            getSource();
-                        }
-                        break;
-                    case RecyclerView.SCROLL_STATE_DRAGGING://拖动
-                        break;
-                    case RecyclerView.SCROLL_STATE_SETTLING://惯性滑动
-                        break;
-                }
-
+    public void popup(View view) {
+        PopupMenu popupMenu = new PopupMenu(this, view, Gravity.RIGHT);
+        popupMenu.inflate(R.menu.menu_main_right);
+        popupMenu.show();
+        popupMenu.setOnMenuItemClickListener(item -> {
+            int itemId = item.getItemId();
+            switch (itemId) {
+                case R.id.menu_setting:
+                    openSetting();
+                    break;
+                case R.id.menu_del:
+                    String dir = mediaModuleList.get(viewPager2.getCurrentItem()).getDir();
+                    String url = Constants.cacheSetting.getSourceUrl() + "/" + dir;
+                    HttpHelper.okHttpDelete(handler, url, 999);
+                    LitePal.delete(MediaModule.class, mediaModuleList.get(viewPager2.getCurrentItem()).getId());
+                    break;
             }
+            return false;
         });
     }
 
-    //释放
-    private void releaseVideo(int index) {
-        View itemView = mRecycler.getChildAt(index);
-        final CusVideoView mVideoView = itemView.findViewById(R.id.mVideoView);
-        final ImageView mPlay = itemView.findViewById(R.id.mPlay);
-        mVideoView.stopPlayback();
-        mPlay.animate().alpha(0f).start();
+    private void playPosition(int position) {
+        viewPager2.postDelayed(() -> {
+            RecyclerView.ViewHolder viewHolder = ((RecyclerView) viewPager2.getChildAt(0)).findViewHolderForAdapterPosition(position);
+            if (viewHolder != null) {
+                RecyclerItemNormalHolder recyclerItemNormalHolder = (RecyclerItemNormalHolder) viewHolder;
+                recyclerItemNormalHolder.getPlayer().startPlayLogic();
+            }
+        }, 100);
+    }
+
+    private void openSetting() {
+        getActivityResultRegistry().register("openSetting", new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == 200) {
+                initData();
+            }
+        }).launch(new Intent(this, SettingActivity.class));
     }
 
     private void getSource() {
         new Thread(() -> {
             try {
-                Setting setting = LitePal.findFirst(Setting.class);
-                if (setting != null) {
-                    List<MediaModule> list = EchoUtil.getTiktokSource(setting.getSourceUrl(), setting.getSourceType(), startIndex, setting.getCacheNum());
-                    if (list != null && list.size() > 0) {
-                        startIndex += list.size();
-                        Message message = new Message();
-                        message.what = 1;
-                        message.obj = list;
-                        handler.sendMessage(message);
+                int arg1 = 2;
+                List<MediaModule> pageData = new ArrayList<>();
+                if (Constants.mediaCache.size() == 0) {
+                    List<MediaModule> dbSource = LitePal.findAll(MediaModule.class);
+                    if (dbSource != null && dbSource.size() > 0) {
+                        Collections.shuffle(dbSource);//打乱顺序
+                        Constants.mediaCache.addAll(dbSource);
+                        arg1 = 0;
                     }
                 }
+                pageData = Constants.mediaCache.subList(startIndex, Math.min(startIndex + 10, Constants.mediaCache.size() - 1));
+                if (pageData.size() > 0) {
+                    startIndex += pageData.size();
+                } else {
+                    if (startIndex != 0) {
+                        startIndex = 0;
+                        pageData = Constants.mediaCache.subList(startIndex, Math.min(startIndex + 10, Constants.mediaCache.size() - 1));
+                    }
+                }
+                Message.obtain(handler, 1, arg1, arg1, pageData).sendToTarget();
             } catch (Exception e) {
                 Log.e(TAG, "getSource: " + e.getMessage(), e);
             }
@@ -143,8 +155,20 @@ public class MainActivity extends AppCompatActivity {
                         if (list != null && list.size() > 0) {
                             mediaModuleList.addAll(list);
                             Log.i(TAG, "handleMessage: 获取资源:" + list.size() + "条");
-                            mAdapter.notifyDataSetChanged();
+                            if (viewPagerAdapter != null) {
+                                viewPagerAdapter.notifyDataSetChanged();
+                            }
+                            if (msg.arg1 == 0) {
+                                GSYVideoManager.releaseAllVideos();
+                                //自动播放第0个
+                                playPosition(0);
+                            }
                         }
+                        break;
+                    case 999:
+//                        Toast.makeText(getApplicationContext(), "删除成功", Toast.LENGTH_SHORT).show();
+                        initData();
+                        break;
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -153,45 +177,57 @@ public class MainActivity extends AppCompatActivity {
         }
     });
 
-    public void doSetting(View view) {
-        startActivityForResult(new Intent(this, SettingActivity.class), 1);
-    }
-
     public void initData() {
-        //初始化litepal
-        LitePal.initialize(getApplicationContext());
-        startIndex = 0;
-        getSource();
-    }
-
-    /**
-     * activity跳转结果回调
-     *
-     * @param requestCode
-     * @param resultCode
-     * @param data
-     */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case 1:
-                if (resultCode == 200) {
-                    initData();
-                }
+        Constants.loadSetting();
+        int count = LitePal.count(MediaModule.class);
+        if (Constants.cacheSetting == null || count == 0) {
+            //没有资源,打开设置
+            openSetting();
+        } else {
+            mediaModuleList.clear();
+            startIndex = 0;
+            Constants.mediaCache.clear();
+            GSYVideoManager.releaseAllVideos();
+            getSource();
         }
     }
 
     @Override
     public void onBackPressed() {
-        if (Jzvd.backPress()) {
-            return;
-        }
+        WarnDialog warnDialog = new WarnDialog(this);
+        warnDialog.show();
+        warnDialog.setTitle("退出提醒");
+        warnDialog.setContent("请确认是否完全退出应用");
+        warnDialog.setLeftBtnText("取消");
+        warnDialog.setRightBtnText("确定");
+        warnDialog.setOnButtonClickListener(new WarnDialog.onButtonClickListener() {
+            @Override
+            public void onLeftClick() {
+            }
+
+            @Override
+            public void onRightClick() {
+                GSYVideoManager.releaseAllVideos();
+                finish();
+            }
+        });
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Jzvd.releaseAllVideos();
+        GSYVideoManager.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GSYVideoManager.onResume(false);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        GSYVideoManager.releaseAllVideos();
     }
 }

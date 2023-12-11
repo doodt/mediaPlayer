@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/menu_setting"
+        android:title="设置"
+        app:showAsAction="withText"
+        android:icon="@drawable/setting_icon"/>
+    <item android:id="@+id/menu_del"
+        android:title="删除"
+        app:showAsAction="withText"
+        android:icon="@drawable/delete_icon"/>
+</menu>

@@ -11,7 +11,10 @@ public class Setting extends LitePalSupport {
     //推送类型,1顺序推送,2随机推送
     private Integer sourceType;
     //缓存条目数
+    @Deprecated
     private Integer cacheNum;
+    //是否优先使用m3u8资源,1是,其他否
+    private Integer m3u8First;
 
     public Long getId() {
         return id;
@@ -51,5 +54,13 @@ public class Setting extends LitePalSupport {
 
     public void setCacheNum(Integer cacheNum) {
         this.cacheNum = cacheNum;
+    }
+
+    public Integer getM3u8First() {
+        return m3u8First;
+    }
+
+    public void setM3u8First(Integer m3u8First) {
+        this.m3u8First = m3u8First;
     }
 }

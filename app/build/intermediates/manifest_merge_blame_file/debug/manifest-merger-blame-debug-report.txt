@@ -1,75 +1,147 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="com.doodt.tiktok"
-4    android:versionCode="1"
-5    android:versionName="1.0" >
+4    android:versionCode="2"
+5    android:versionName="2.0" >
 6
 7    <uses-sdk
-8        android:minSdkVersion="19"
-8-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml
-9        android:targetSdkVersion="29" />
-9-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="34" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络权限 -->
-11-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:5:5-67
-11-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:5:22-64
+11-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:4:5-67
+11-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:4:22-64
 12    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-12-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:6:5-81
-12-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:6:22-78
+12-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:5:5-81
+12-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:5:22-78
 13    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-13-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:7:5-80
-13-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:7:22-77
-14    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-14-->[cn.jzvd:jiaozivideoplayer:7.7.0] D:\Android\.gradle\caches\transforms-2\files-2.1\585c3e10af13bbddb54fbedf61d232d0\jiaozivideoplayer-7.7.0\AndroidManifest.xml:9:5-79
-14-->[cn.jzvd:jiaozivideoplayer:7.7.0] D:\Android\.gradle\caches\transforms-2\files-2.1\585c3e10af13bbddb54fbedf61d232d0\jiaozivideoplayer-7.7.0\AndroidManifest.xml:9:22-76
-15
-16    <application
-16-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:9:5-30:19
-17        android:allowBackup="true"
-17-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:10:9-35
-18        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-18-->[androidx.core:core:1.5.0] D:\Android\.gradle\caches\transforms-2\files-2.1\4db6467d6ee37873e6edf677cbaebb78\core-1.5.0\AndroidManifest.xml:24:18-86
-19        android:debuggable="true"
-20        android:icon="@drawable/icon_tiktok"
-20-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:11:9-45
-21        android:label="@string/app_name"
-21-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:12:9-41
-22        android:networkSecurityConfig="@xml/network_security_config"
-22-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:13:9-69
-23        android:roundIcon="@drawable/icon_tiktok"
-23-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:14:9-50
-24        android:supportsRtl="true"
-24-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:15:9-35
-25        android:testOnly="true"
-26        android:theme="@style/AppTheme" >
-26-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:16:9-40
-27
-28        <!-- 启动页 -->
-29        <activity android:name="com.doodt.tiktok.activity.SplashActivity" >
-29-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:18:9-24:20
-29-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:18:19-58
-30            <intent-filter>
-30-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:19:13-23:29
-31                <action android:name="android.intent.action.MAIN" />
-31-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:20:17-69
-31-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:20:25-66
-32
-33                <category android:name="android.intent.category.LAUNCHER" />
-33-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:22:17-77
-33-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:22:27-74
-34            </intent-filter>
-35        </activity>
-36        <activity
-36-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:25:9-28:52
-37            android:name="com.doodt.tiktok.activity.MainActivity"
-37-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:26:13-50
-38            android:configChanges="orientation|screenSize|keyboardHidden"
-38-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:27:13-74
-39            android:screenOrientation="portrait" />
-39-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:28:13-49
-40        <activity android:name="com.doodt.tiktok.activity.SettingActivity" />
-40-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:29:9-61
-40-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:29:19-59
-41    </application>
-42
-43</manifest>
+13-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:6:5-80
+13-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:6:22-77
+14    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- This permission is required to start foreground services in Android P. -->
+14-->[androidx.media3:media3-common:1.2.0] D:\Android\.gradle\caches\transforms-3\1d168ed8250987611fe3c0f0194ae19e\transformed\jetified-media3-common-1.2.0\AndroidManifest.xml:22:5-79
+14-->[androidx.media3:media3-common:1.2.0] D:\Android\.gradle\caches\transforms-3\1d168ed8250987611fe3c0f0194ae19e\transformed\jetified-media3-common-1.2.0\AndroidManifest.xml:22:22-76
+15    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+15-->[com.google.android.gms:play-services-cast-framework:21.3.0] D:\Android\.gradle\caches\transforms-3\43d5649fb811ca2dbbd27391671c4807\transformed\jetified-play-services-cast-framework-21.3.0\AndroidManifest.xml:12:5-77
+15-->[com.google.android.gms:play-services-cast-framework:21.3.0] D:\Android\.gradle\caches\transforms-3\43d5649fb811ca2dbbd27391671c4807\transformed\jetified-play-services-cast-framework-21.3.0\AndroidManifest.xml:12:22-74
+16
+17    <queries>
+17-->[com.google.android.gms:play-services-cast-framework:21.3.0] D:\Android\.gradle\caches\transforms-3\43d5649fb811ca2dbbd27391671c4807\transformed\jetified-play-services-cast-framework-21.3.0\AndroidManifest.xml:14:5-16:15
+18        <package android:name="com.google.android.gms.policy_cast_dynamite" />
+18-->[com.google.android.gms:play-services-cast-framework:21.3.0] D:\Android\.gradle\caches\transforms-3\43d5649fb811ca2dbbd27391671c4807\transformed\jetified-play-services-cast-framework-21.3.0\AndroidManifest.xml:15:9-79
+18-->[com.google.android.gms:play-services-cast-framework:21.3.0] D:\Android\.gradle\caches\transforms-3\43d5649fb811ca2dbbd27391671c4807\transformed\jetified-play-services-cast-framework-21.3.0\AndroidManifest.xml:15:18-76
+19    </queries>
+20
+21    <application
+21-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:8:5-30:19
+22        android:allowBackup="true"
+22-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:9:9-35
+23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+23-->[androidx.core:core:1.8.0] D:\Android\.gradle\caches\transforms-3\04a55a8205e24ad0aa9345040c025e9d\transformed\core-1.8.0\AndroidManifest.xml:24:18-86
+24        android:debuggable="true"
+25        android:extractNativeLibs="true"
+26        android:icon="@drawable/icon_tiktok"
+26-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:10:9-45
+27        android:label="@string/app_name"
+27-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:11:9-41
+28        android:networkSecurityConfig="@xml/network_security_config"
+28-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:12:9-69
+29        android:roundIcon="@drawable/icon_tiktok"
+29-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:13:9-50
+30        android:supportsRtl="true"
+30-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:14:9-35
+31        android:testOnly="true"
+32        android:theme="@style/AppTheme" >
+32-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:15:9-40
+33
+34        <!-- 启动页 -->
+35        <activity
+35-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:17:9-24:20
+36            android:name="com.doodt.tiktok.activity.SplashActivity"
+36-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:17:19-58
+37            android:exported="true" >
+37-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:18:13-36
+38            <intent-filter>
+38-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:19:13-23:29
+39                <action android:name="android.intent.action.MAIN" />
+39-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:20:17-69
+39-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:20:25-66
+40
+41                <category android:name="android.intent.category.LAUNCHER" />
+41-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:22:17-77
+41-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:22:27-74
+42            </intent-filter>
+43        </activity>
+44        <activity
+44-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:25:9-28:52
+45            android:name="com.doodt.tiktok.activity.MainActivity"
+45-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:26:13-50
+46            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+46-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:27:13-122
+47            android:screenOrientation="portrait" />
+47-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:28:13-49
+48        <activity android:name="com.doodt.tiktok.activity.SettingActivity" />
+48-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:29:9-61
+48-->E:\android\TiktokDemo-master\app\src\main\AndroidManifest.xml:29:19-59
+49
+50        <receiver
+50-->[com.google.android.gms:play-services-cast-framework:21.3.0] D:\Android\.gradle\caches\transforms-3\43d5649fb811ca2dbbd27391671c4807\transformed\jetified-play-services-cast-framework-21.3.0\AndroidManifest.xml:19:9-21:40
+51            android:name="com.google.android.gms.cast.framework.media.MediaIntentReceiver"
+51-->[com.google.android.gms:play-services-cast-framework:21.3.0] D:\Android\.gradle\caches\transforms-3\43d5649fb811ca2dbbd27391671c4807\transformed\jetified-play-services-cast-framework-21.3.0\AndroidManifest.xml:20:13-91
+52            android:exported="false" />
+52-->[com.google.android.gms:play-services-cast-framework:21.3.0] D:\Android\.gradle\caches\transforms-3\43d5649fb811ca2dbbd27391671c4807\transformed\jetified-play-services-cast-framework-21.3.0\AndroidManifest.xml:21:13-37
+53
+54        <service
+54-->[com.google.android.gms:play-services-cast-framework:21.3.0] D:\Android\.gradle\caches\transforms-3\43d5649fb811ca2dbbd27391671c4807\transformed\jetified-play-services-cast-framework-21.3.0\AndroidManifest.xml:23:9-25:40
+55            android:name="com.google.android.gms.cast.framework.ReconnectionService"
+55-->[com.google.android.gms:play-services-cast-framework:21.3.0] D:\Android\.gradle\caches\transforms-3\43d5649fb811ca2dbbd27391671c4807\transformed\jetified-play-services-cast-framework-21.3.0\AndroidManifest.xml:24:13-85
+56            android:exported="false" />
+56-->[com.google.android.gms:play-services-cast-framework:21.3.0] D:\Android\.gradle\caches\transforms-3\43d5649fb811ca2dbbd27391671c4807\transformed\jetified-play-services-cast-framework-21.3.0\AndroidManifest.xml:25:13-37
+57
+58        <activity
+58-->[com.google.android.gms:play-services-base:18.0.1] D:\Android\.gradle\caches\transforms-3\e9c8a35acc00079a10ea28aa97324d01\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+59            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+59-->[com.google.android.gms:play-services-base:18.0.1] D:\Android\.gradle\caches\transforms-3\e9c8a35acc00079a10ea28aa97324d01\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+60            android:exported="false"
+60-->[com.google.android.gms:play-services-base:18.0.1] D:\Android\.gradle\caches\transforms-3\e9c8a35acc00079a10ea28aa97324d01\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+61            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+61-->[com.google.android.gms:play-services-base:18.0.1] D:\Android\.gradle\caches\transforms-3\e9c8a35acc00079a10ea28aa97324d01\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+62
+63        <meta-data
+63-->[com.google.android.gms:play-services-basement:18.0.0] D:\Android\.gradle\caches\transforms-3\db31ccd8ffcab9febb7da80273768d88\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+64            android:name="com.google.android.gms.version"
+64-->[com.google.android.gms:play-services-basement:18.0.0] D:\Android\.gradle\caches\transforms-3\db31ccd8ffcab9febb7da80273768d88\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+65            android:value="@integer/google_play_services_version" />
+65-->[com.google.android.gms:play-services-basement:18.0.0] D:\Android\.gradle\caches\transforms-3\db31ccd8ffcab9febb7da80273768d88\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+66
+67        <service
+67-->[com.google.android.datatransport:transport-backend-cct:3.1.3] D:\Android\.gradle\caches\transforms-3\37bc1540c53cae839c37783fbaa57005\transformed\jetified-transport-backend-cct-3.1.3\AndroidManifest.xml:29:9-35:19
+68            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+68-->[com.google.android.datatransport:transport-backend-cct:3.1.3] D:\Android\.gradle\caches\transforms-3\37bc1540c53cae839c37783fbaa57005\transformed\jetified-transport-backend-cct-3.1.3\AndroidManifest.xml:30:13-103
+69            android:exported="false" >
+69-->[com.google.android.datatransport:transport-backend-cct:3.1.3] D:\Android\.gradle\caches\transforms-3\37bc1540c53cae839c37783fbaa57005\transformed\jetified-transport-backend-cct-3.1.3\AndroidManifest.xml:31:13-37
+70            <meta-data
+70-->[com.google.android.datatransport:transport-backend-cct:3.1.3] D:\Android\.gradle\caches\transforms-3\37bc1540c53cae839c37783fbaa57005\transformed\jetified-transport-backend-cct-3.1.3\AndroidManifest.xml:32:13-34:39
+71                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+71-->[com.google.android.datatransport:transport-backend-cct:3.1.3] D:\Android\.gradle\caches\transforms-3\37bc1540c53cae839c37783fbaa57005\transformed\jetified-transport-backend-cct-3.1.3\AndroidManifest.xml:33:17-94
+72                android:value="cct" />
+72-->[com.google.android.datatransport:transport-backend-cct:3.1.3] D:\Android\.gradle\caches\transforms-3\37bc1540c53cae839c37783fbaa57005\transformed\jetified-transport-backend-cct-3.1.3\AndroidManifest.xml:34:17-36
+73        </service>
+74        <service
+74-->[com.google.android.datatransport:transport-runtime:3.1.3] D:\Android\.gradle\caches\transforms-3\71fa126fc85e4250f13cd0e5f37c4d80\transformed\jetified-transport-runtime-3.1.3\AndroidManifest.xml:26:9-30:19
+75            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+75-->[com.google.android.datatransport:transport-runtime:3.1.3] D:\Android\.gradle\caches\transforms-3\71fa126fc85e4250f13cd0e5f37c4d80\transformed\jetified-transport-runtime-3.1.3\AndroidManifest.xml:27:13-117
+76            android:exported="false"
+76-->[com.google.android.datatransport:transport-runtime:3.1.3] D:\Android\.gradle\caches\transforms-3\71fa126fc85e4250f13cd0e5f37c4d80\transformed\jetified-transport-runtime-3.1.3\AndroidManifest.xml:28:13-37
+77            android:permission="android.permission.BIND_JOB_SERVICE" >
+77-->[com.google.android.datatransport:transport-runtime:3.1.3] D:\Android\.gradle\caches\transforms-3\71fa126fc85e4250f13cd0e5f37c4d80\transformed\jetified-transport-runtime-3.1.3\AndroidManifest.xml:29:13-69
+78        </service>
+79
+80        <receiver
+80-->[com.google.android.datatransport:transport-runtime:3.1.3] D:\Android\.gradle\caches\transforms-3\71fa126fc85e4250f13cd0e5f37c4d80\transformed\jetified-transport-runtime-3.1.3\AndroidManifest.xml:32:9-34:40
+81            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+81-->[com.google.android.datatransport:transport-runtime:3.1.3] D:\Android\.gradle\caches\transforms-3\71fa126fc85e4250f13cd0e5f37c4d80\transformed\jetified-transport-runtime-3.1.3\AndroidManifest.xml:33:13-132
+82            android:exported="false" />
+82-->[com.google.android.datatransport:transport-runtime:3.1.3] D:\Android\.gradle\caches\transforms-3\71fa126fc85e4250f13cd0e5f37c4d80\transformed\jetified-transport-runtime-3.1.3\AndroidManifest.xml:34:13-37
+83    </application>
+84
+85</manifest>

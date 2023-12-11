@@ -44,41 +44,32 @@ public class SplashActivity extends BaseActivity {
     private void checkPermission() {
         if (Build.VERSION.SDK_INT >= 23) {
             RxPermissions rxPermissions = new RxPermissions(this);
-            rxPermissions.request(
-                    Manifest.permission.INTERNET,
-                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    .subscribe(aBoolean -> {
-                        if (aBoolean) {
-                            //启动主页
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                }
-                            }, 1500);
-                        } else {
-                            new AlertDialog.Builder(SplashActivity.this).setCancelable(false).setTitle("提示").setMessage("授权失败，即将重启app...").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    //与正常页面跳转一样可传递序列化数据,在Launch页面内获得
-                                    intent.putExtra("REBOOT", "reboot");
-                                    startActivity(intent);
-                                }
-                            }).show();
-
+            rxPermissions.request(Manifest.permission.INTERNET, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe(aBoolean -> {
+                if (aBoolean) {
+                    //启动主页
+                    handler.postDelayed(() -> {
+                        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }, 1500);
+                } else {
+                    new AlertDialog.Builder(SplashActivity.this).setCancelable(false).setTitle("提示").setMessage("授权失败，即将重启app...").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            //与正常页面跳转一样可传递序列化数据,在Launch页面内获得
+                            intent.putExtra("REBOOT", "reboot");
+                            startActivity(intent);
                         }
-                    });
-        } else {
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    }).show();
+
                 }
+            });
+        } else {
+            handler.postDelayed(() -> {
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
             }, 1500);
         }
     }

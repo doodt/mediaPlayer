@@ -2,6 +2,8 @@ package com.doodt.tiktok.util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -20,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -169,6 +172,37 @@ public class HttpHelper {
             }
         }
         return json;
+    }
+
+    public static void okHttpDelete(final Handler handler, final String url, final int what) {
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    String result = getUrl(url);
+                    //    Log.d("TAG",result);
+                    Message message1 = Message.obtain();
+                    message1.what = what;
+                    message1.obj = result;
+                    handler.sendMessage(message1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }.start();
+    }
+
+    private static String getUrl(String url) throws IOException {
+        FormBody body = new FormBody.Builder().build();
+        Request request = new Request.Builder()
+                .url(url)
+                .delete(body)
+                .build();
+        try (Response response = okClient.newCall(request).execute()) {
+            return response.body().string();
+        }
     }
 
     /**

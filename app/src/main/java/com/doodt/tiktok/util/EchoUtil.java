@@ -1,5 +1,6 @@
 package com.doodt.tiktok.util;
 
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -8,6 +9,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.doodt.tiktok.entity.MediaModule;
 import com.doodt.tiktok.entity.ReFileInfo;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,55 +25,14 @@ public class EchoUtil {
 
 
     /**
-     * 获取资源
+     * 获取所有资源
      *
-     * @param baseUrl    资源根路径
-     * @param type       类型,1顺序获取,2随机获取
-     * @param startIndex 开始下标
-     * @param num        条目数
+     * @param url 资源列表地址
      * @return
      */
-    public static List<MediaModule> getTiktokSource(String baseUrl, Integer type, int startIndex, int num) {
-        if (type == 1) {
-            return getTiktok365OrderSource(baseUrl, startIndex, num);
-        } else {
-            return getTiktok365RandomSource(baseUrl, num);
-        }
-    }
-
-    /**
-     * 获取顺序资源
-     *
-     * @param url   资源列表地址
-     * @param index 起始下标
-     * @param num   获取条目数
-     * @return
-     */
-    private static List<MediaModule> getTiktok365OrderSource(String url, int index, Integer num) {
+    public static List<MediaModule> getTiktokSource(Handler handler, String url) {
         try {
-            if (TextUtils.isEmpty(url) || num <= 0) return null;
-            JSONObject json = HttpHelper.okHttpGet(url + "?json=true");
-            if (json == null || json.size() == 0) return null;
-            List<MediaModule> modules = new ArrayList<>();
-            List<ReFileInfo> dateFiles = json.getJSONArray("files").toJavaList(ReFileInfo.class);
-            int count = 0;
-            for (ReFileInfo dateDir : dateFiles) {
-                JSONObject jsonObject = HttpHelper.okHttpGet(url + "/" + dateDir.getName() + "?json=true");
-                List<ReFileInfo> subFileInfo = jsonObject.getJSONArray("files").toJavaList(ReFileInfo.class);
-                for (ReFileInfo f : subFileInfo) {
-                    count++;
-                    if (index < count) {
-                        MediaModule mediaModule = new MediaModule();
-                        mediaModule.setText(f.getName());
-                        mediaModule.setTitle(f.getName());
-                        mediaModule.setImageUrl(url + "/" + dateDir.getName() + "/" + f.getName() + "/" + f.getName() + ".jpg");
-                        mediaModule.setMediaUrl(url + "/" + dateDir.getName() + "/" + f.getName() + "/" + f.getName() + ".mp4");
-                        mediaModule.setDateTime(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.CHINA).format(new Date(f.getMtime())));
-                        modules.add(mediaModule);
-                        if (modules.size() >= num) return modules;
-                    }
-                }
-            }
+
         } catch (Exception e) {
             Log.e(TAG, "getMediaData: " + e.getMessage(), e);
         }

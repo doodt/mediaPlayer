@@ -22,5 +22,5 @@ gohttpserver 目录结构:
 
 https://github.com/JArchie/TiktokDemo/tree/master
 
-https://github.com/Jzvd/JZVideo
+https://github.com/CarGuo/GSYVideoPlayer
 

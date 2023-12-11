@@ -43,20 +43,23 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="5dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="资源地址："
+                android:text="个人资源"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/baseUrl"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -69,76 +72,59 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="获取方式："
+                android:text="优先m3u8"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
-            <RadioGroup
-                android:id="@+id/sourceTypeGroup"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="18dp"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/sourceType1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:checked="true"
-                    android:text="顺序获取"
-                    android:textColor="#2d2d2d"
-                    android:textSize="18sp" />
-
-                <RadioButton
-                    android:id="@+id/sourceType2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="随机获取"
-                    android:textColor="#2d2d2d"
-                    android:textSize="18sp" />
-
-            </RadioGroup>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="5dp"
-            android:gravity="center_vertical">
-
-            <TextView
+            <CheckBox
+                android:id="@+id/cb_m3u8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="缓存数量："
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/sourceNum"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="numberDecimal" />
+                android:layout_marginStart="10dp" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="200dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <Button
-            android:id="@+id/faceparam_btn_save"
-            android:layout_width="350dp"
+            android:id="@+id/btn_clear_source"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/background_rect_btn"
-            android:text="保 存"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/background_error_btn"
+            android:text="清空资源"
             android:textColor="#ffffff"
-            android:onClick="saveConfig"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_add_source"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/background_default_btn"
+            android:text="获取资源"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/background_info_btn"
+            android:text="保存配置"
+            android:textColor="#ffffff"
             android:textSize="20sp" />
     </LinearLayout>
 
