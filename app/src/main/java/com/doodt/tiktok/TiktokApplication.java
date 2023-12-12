@@ -10,6 +10,7 @@ import androidx.media3.exoplayer.source.MediaSource;
 import androidx.multidex.MultiDexApplication;
 
 import com.doodt.tiktok.exosource.GSYExoHttpDataSourceFactory;
+import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.cache.CacheFactory;
 import com.shuyu.gsyvideoplayer.player.IjkPlayerManager;
 import com.shuyu.gsyvideoplayer.player.PlayerFactory;
